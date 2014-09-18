@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SoundSystem">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ext/SoundSystem/SoundSystem.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
