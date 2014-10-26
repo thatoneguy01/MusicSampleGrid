@@ -8,6 +8,9 @@ import paulscode.sound.codecs.CodecWav;
 import paulscode.sound.libraries.LibraryJavaSound;
 import paulscode.sound.libraries.LibraryLWJGLOpenAL;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by Daniel on 9/17/14.
@@ -15,18 +18,14 @@ import paulscode.sound.libraries.LibraryLWJGLOpenAL;
 public class Main
 {
 
-    public static SoundSystem soundSystem;
+    public static SoundSystem soundSystem = new SoundSystem();
 
     public static void main(String[] args)
     {
         soundSystem = setupSoundSystem();
-        soundSystem.backgroundMusic("background", "/Users/Daniel/Downloads/maroon_5-maps.mid", false);
-        try {
-            Thread.sleep(30000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        soundSystem.cleanup();
+        AudioPlaybackSystem.loadClip("20CenFox.mid", "F:\\Documents\\Workspace\\MusicSampleGrid\\ext\\20CenFox.mid");
+        AudioPlaybackSystem.playClip("20CenFox.mid");
+        //System.exit(0);
     }
 
     public static SoundSystem setupSoundSystem()
@@ -76,5 +75,31 @@ public class Main
             return null;
         }
         return mySoundSystem;
+    }
+
+    public static void testPlay()
+    {
+        //soundSystem = setupSoundSystem();
+        URL url = null;
+        File file =  new File("F:\\Documents\\Workspace\\MusicSampleGrid\\ext\\20CenFox.mid");
+        if (file.exists()) {
+            try {
+                url = file.toURI().toURL();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+        //soundSystem.loadSound(url, "20CenFox.midi");
+        //soundSystem.newSource(false, "20CenFox.midi", url, "20CenFox", false, 0, 0, 0, SoundSystemConfig.ATTENUATION_NONE, SoundSystemConfig.getDefaultRolloff());
+        //soundSystem.play("20CenFox.midi");
+        //soundSystem.play("20CenFox");
+        System.out.println("Playing....");
+        soundSystem.quickPlay(false, url, "20CenFox.midi", false, 0, 0, 0, SoundSystemConfig.ATTENUATION_NONE, SoundSystemConfig.getDefaultRolloff());
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        soundSystem.cleanup();
     }
 }
