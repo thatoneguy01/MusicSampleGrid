@@ -108,7 +108,7 @@ public class FileAccess {
     {
         void run()
         {
-            
+            start();
         }
     }
 }
