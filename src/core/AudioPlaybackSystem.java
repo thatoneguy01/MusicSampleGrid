@@ -17,11 +17,11 @@ import java.util.Map;
 public class AudioPlaybackSystem
 {
 
-    public static void loadClip(String alias, String fileLocation)
+    public static void loadClip(String alias, File file)
     {
         URL url = null;
         try {
-            url= new File(fileLocation).toURI().toURL();
+            url= file.toURI().toURL();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
