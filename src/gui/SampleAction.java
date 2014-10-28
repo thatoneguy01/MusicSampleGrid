@@ -8,6 +8,7 @@ public class SampleAction implements Action{
 	public void execute() {
 		// TODO Auto-generated method stub
 		//Play the sound
+		System.out.println("~~~SOUND~~~");
 	}
 	
 }
