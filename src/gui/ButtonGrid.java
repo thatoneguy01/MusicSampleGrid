@@ -13,7 +13,7 @@ public class ButtonGrid extends JPanel{
 		
 		for(int i = 0; i < xSize; i++){
 			for(int j = 0; j < ySize; j++){
-				grid[i][j] = new SampleButton(50,50);
+				grid[i][j] = new SampleButton(100,100);
 				this.add(grid[i][j]);
 			}
 		}

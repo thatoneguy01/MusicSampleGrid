@@ -106,7 +106,7 @@ public class FileAccess {
 
     class RecThread extends Thread
     {
-        void run()
+        public void run()
         {
             start();
         }

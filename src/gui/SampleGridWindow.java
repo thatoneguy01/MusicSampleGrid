@@ -8,12 +8,26 @@ import javax.swing.*;
 import java.awt.GridLayout;
 import java.awt.event.*;
 
+/**
+ * The main window for the project, which has a button grid on the right and options on the left.
+ * @author Henry
+ *
+ */
 public class SampleGridWindow extends JFrame{
+	
+	public ButtonGrid grid;
+	public LeftPanel leftPanel;
+	
+	/**
+	 * Creates the Window and grid.
+	 */
 	public SampleGridWindow(){
-		setLayout(new GridLayout(2,0));
+		setLayout(new GridLayout(0,2));
 		
-		ButtonGrid grid = new ButtonGrid(4,4);
+		grid = new ButtonGrid(4,4);
+		leftPanel = new LeftPanel();
 		
+		this.add(leftPanel);
 		this.add(grid);
 		
 		this.pack();
