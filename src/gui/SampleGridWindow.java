@@ -24,9 +24,6 @@ public class SampleGridWindow extends JFrame{
 	 * Creates the Window and grid.
 	 */
 	public SampleGridWindow(){
-		new Main();
-		Main.setupSoundSystem();
-		Main.testPlay();
 		setLayout(new GridLayout(0,2));
 		
 		grid = new ButtonGrid(4,4);

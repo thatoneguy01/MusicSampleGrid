@@ -6,7 +6,6 @@ import javax.swing.*;
 public class Button extends JButton{
 	
 	protected Action pressAction;
-	String soundAlias;
 	protected int x,y;
 	
 	public Button(int xSize,int ySize){
