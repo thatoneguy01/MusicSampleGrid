@@ -27,10 +27,13 @@ public class AudioPlaybackSystem
         }
         Main.soundSystem.loadSound(url, alias);
         Main.soundSystem.newSource(false, alias, url, alias, false, 0, 0, 0, SoundSystemConfig.ATTENUATION_NONE, SoundSystemConfig.getDefaultRolloff());
+        System.out.println("Sound loaded.");
     }
 
     public static void playClip(String alias)
     {
+        Main.soundSystem.stop(alias);
+        Main.soundSystem.rewind(alias);
         Main.soundSystem.play(alias);
     }
 }

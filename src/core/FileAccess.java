@@ -16,6 +16,7 @@ import java.nio.file.StandardCopyOption;
  * Created by Daniel on 10/27/2014.
  */
 public class FileAccess {
+
     public static File choseFile() {
         JFileChooser fileChooser = new JFileChooser();
         int returnVal = fileChooser.showOpenDialog(new JFrame());

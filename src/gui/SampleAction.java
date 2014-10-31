@@ -20,6 +20,7 @@ public class SampleAction implements Action{
 		// TODO Auto-generated method stub
 		//Play the sound
 		System.out.println("~~~SOUND~~~");
+
 	}
 	
 }

@@ -38,6 +38,7 @@ public class SampleGridWindow extends JFrame{
 	public static void main(String[] args){
 		SampleGridWindow window = new SampleGridWindow();
 		window.setVisible(true);
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		System.out.println("done");
 	}
 }

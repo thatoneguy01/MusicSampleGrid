@@ -6,7 +6,7 @@ package core;
 public class Config {
 
     public static int tempo;
-    public static boolean editMode;
+    public static boolean editMode = true;
 
 
 }

@@ -1,5 +1,6 @@
 package core;
 
+import gui.SampleGridWindow;
 import paulscode.sound.Library;
 import paulscode.sound.SoundSystem;
 import paulscode.sound.SoundSystemConfig;
@@ -22,11 +23,12 @@ public class Main
 
     public static void main(String[] args)
     {
-        //soundSystem = setupSoundSystem();
+        soundSystem = setupSoundSystem();
         //File testClip = new File("F:\\Documents\\Workspace\\MusicSampleGrid\\ext\\20CenFox.mid");
         //AudioPlaybackSystem.loadClip("20CenFox.mid", testClip);
         //AudioPlaybackSystem.playClip("20CenFox.mid");
-        FileAccess.createClip();
+        //FileAccess.createClip();
+        SampleGridWindow.main(null);
         //System.exit(0);
     }
 
