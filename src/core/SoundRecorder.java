@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * Created by Daniel on 10/27/2014.
  */
-public class SoundRecorder
+public class SoundRecorder implements Runnable
 {
     File wavFile = null;
     AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
@@ -16,6 +16,11 @@ public class SoundRecorder
     public SoundRecorder(File location)
     {
         this.wavFile = location;
+    }
+
+    public void run()
+    {
+        start();
     }
 
     AudioFormat getAudioFormat() {

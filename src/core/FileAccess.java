@@ -2,11 +2,15 @@ package core;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 /**
  * Created by Daniel on 10/27/2014.
@@ -30,11 +34,24 @@ public class FileAccess {
         final SoundRecorder sr = new SoundRecorder(location);
         final JFrame frame = new JFrame("Recording");
         final JButton startButton = new JButton("Start");
+        final Thread recThread = new Thread(sr);
+        final JTextPane text = new JTextPane();
+        text.setText("Ready to record.");
+        text.setEditable(false);
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (sr.line == null) {
-                    sr.start();
+//                    text.setText("Recording in 4...");
+//                    waitOneSec();
+//                    text.setText("Recording in 3...");
+//                    waitOneSec();
+//                    text.setText("Recording in 2...");
+//                    waitOneSec();
+//                    text.setText("Recording in 1...");
+//                    waitOneSec();
+//                    text.setText("Recording...");
+                    recThread.start();
                     startButton.setText("Pause");
                 } else {
                     if (sr.line.isActive()) {
@@ -58,16 +75,29 @@ public class FileAccess {
             }
         });
         Container container = frame.getContentPane();
-        container.setLayout(new GridLayout(1, 2));
-        frame.add(startButton);
-        frame.add(stopButton);
+        container.setLayout(new GridLayout(2, 1));
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(1,2));
+        panel.add(startButton);
+        panel.add(stopButton);
+        frame.add(text);
+        frame.add(panel);
         frame.pack();
         frame.setVisible(true);
     }
 
+    private static void waitOneSec()
+    {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void createClip()
     {
-        File file = new File("temp.wav");
+        File file = new File("F:\\Documents\\temp.wav");
         try {
             file.createNewFile();
         } catch (IOException e) {
@@ -101,14 +131,16 @@ public class FileAccess {
         if (result == JFileChooser.APPROVE_OPTION);
         {
             File clipFile = fc.getSelectedFile();
+            CopyOption[] moveOptions = {/*StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.COPY_ATTRIBUTES, */StandardCopyOption.REPLACE_EXISTING};
+            if (!clipFile.getAbsolutePath().endsWith(".wav"))
+                clipFile = new File(clipFile.getAbsolutePath() + ".wav");
+            try {
+                Files.move(input.toPath(), clipFile.toPath(), moveOptions);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            input.delete();
         }
     }
 
-    class RecThread extends Thread
-    {
-        public void run()
-        {
-            start();
-        }
-    }
 }
