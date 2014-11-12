@@ -27,8 +27,8 @@ public class Main
         //File testClip = new File("F:\\Documents\\Workspace\\MusicSampleGrid\\ext\\20CenFox.mid");
         //AudioPlaybackSystem.loadClip("20CenFox.mid", testClip);
         //AudioPlaybackSystem.playClip("20CenFox.mid");
-        //FileAccess.createClip();
-        SampleGridWindow.main(null);
+        FileAccess.createClip();
+        //SampleGridWindow.main(null);
         //System.exit(0);
     }
 

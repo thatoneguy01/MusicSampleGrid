@@ -12,13 +12,7 @@ public class ModePanel extends JPanel {
 	ModeButton editToggle;
 	public ModePanel(){
 		editToggle = new ModeButton(100,50);
-        editToggle.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Config.editMode = !Config.editMode;
-                System.out.println("switched to edit mode" + Config.editMode);
-            }
-        });
+        
 		this.add(editToggle);
 		this.setVisible(true);
 	}
