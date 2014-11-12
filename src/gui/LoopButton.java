@@ -8,7 +8,7 @@ public class LoopButton extends Button{
 		super(100,50);
 		
 		//Make pressAction a looping sound.
-		this.pressAction = new SampleAction();
+		this.pressAction = new SampleLoopAction();
 		
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){

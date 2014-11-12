@@ -9,7 +9,9 @@ import paulscode.sound.codecs.CodecWav;
 import paulscode.sound.libraries.LibraryJavaSound;
 import paulscode.sound.libraries.LibraryLWJGLOpenAL;
 
+import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -19,15 +21,16 @@ import java.net.URL;
 public class Main
 {
 
-    public static SoundSystem soundSystem = new SoundSystem();
+    //public static SoundSystem soundSystem = new SoundSystem();
 
     public static void main(String[] args)
     {
-        soundSystem = setupSoundSystem();
+        //soundSystem = setupSoundSystem();
         //File testClip = new File("F:\\Documents\\Workspace\\MusicSampleGrid\\ext\\20CenFox.mid");
         //AudioPlaybackSystem.loadClip("20CenFox.mid", testClip);
         //AudioPlaybackSystem.playClip("20CenFox.mid");
         //FileAccess.createClip();
+        KeyBinder binds = new KeyBinder();
         SampleGridWindow.main(null);
         //System.exit(0);
     }
@@ -81,8 +84,7 @@ public class Main
         return mySoundSystem;
     }
 
-    public static void testPlay()
-    {
+    public static void testPlay() {
         //soundSystem = setupSoundSystem();
         URL url = null;
         File file =  new File("F:\\Documents\\Workspace\\MusicSampleGrid\\ext\\20CenFox.mid");
@@ -98,12 +100,13 @@ public class Main
         //soundSystem.play("20CenFox.midi");
         //soundSystem.play("20CenFox");
         System.out.println("Playing....");
-        soundSystem.quickPlay(false, url, "20CenFox.midi", false, 0, 0, 0, SoundSystemConfig.ATTENUATION_NONE, SoundSystemConfig.getDefaultRolloff());
+
+        //soundSystem.quickPlay(false, url, "20CenFox.midi", false, 0, 0, 0, SoundSystemConfig.ATTENUATION_NONE, SoundSystemConfig.getDefaultRolloff());
         try {
             Thread.sleep(20000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        soundSystem.cleanup();
+        //soundSystem.cleanup();
     }
 }

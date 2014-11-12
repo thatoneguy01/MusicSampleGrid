@@ -17,23 +17,57 @@ import java.util.Map;
 public class AudioPlaybackSystem
 {
 
-    public static void loadClip(String alias, File file)
+//    public static void loadClip(String alias, File file)
+//    {
+//        URL url = null;
+//        try {
+//            url= file.toURI().toURL();
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+//        Main.soundSystem.loadSound(url, alias);
+//        Main.soundSystem.newSource(false, alias, url, alias, false, 0, 0, 0, SoundSystemConfig.ATTENUATION_NONE, SoundSystemConfig.getDefaultRolloff());
+//        System.out.println("Sound loaded.");
+//    }
+
+    public static Clip createJSClip(File inputFile)
     {
-        URL url = null;
         try {
-            url= file.toURI().toURL();
-        } catch (MalformedURLException e) {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(inputFile);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            return clip;
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        Main.soundSystem.loadSound(url, alias);
-        Main.soundSystem.newSource(false, alias, url, alias, false, 0, 0, 0, SoundSystemConfig.ATTENUATION_NONE, SoundSystemConfig.getDefaultRolloff());
-        System.out.println("Sound loaded.");
+        return null;
     }
 
-    public static void playClip(String alias)
+    public static void playJSClip(Clip clip)
     {
-        Main.soundSystem.stop(alias);
-        Main.soundSystem.rewind(alias);
-        Main.soundSystem.play(alias);
+        if (clip.isRunning())
+        {
+            clip.stop();
+        }
+        clip.setFramePosition(0);
+        clip.start();
     }
+
+    public static void stopJSClip(Clip clip)
+    {
+        if (clip.isRunning())
+            clip.stop();
+        clip.setFramePosition(0);
+    }
+
+//    public static void playClip(String alias)
+//    {
+//        Main.soundSystem.stop(alias);
+//        Main.soundSystem.rewind(alias);
+//        Main.soundSystem.play(alias);
+//    }
 }

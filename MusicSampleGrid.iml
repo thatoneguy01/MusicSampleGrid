@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/output" />
+    <output-test url="file://$MODULE_DIR$/output" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="LibraryJavaSound" level="project" />
-    <orderEntry type="library" name="SoundSystem" level="project" />
-    <orderEntry type="library" name="LibraryLWJGLOpenAL" level="project" />
-    <orderEntry type="library" name="CodecWav" level="project" />
-    <orderEntry type="module" module-name="LibraryLWJGLOpenAL" />
-    <orderEntry type="module" module-name="LibraryJavaSound" />
-    <orderEntry type="module" module-name="CodecWav" />
-    <orderEntry type="module" module-name="SoundSystem" />
+    <orderEntry type="library" name="SoundSystem1" level="project" />
+    <orderEntry type="library" name="LibraryJavaSound1" level="project" />
+    <orderEntry type="library" name="LibraryLWJGLOpenAL1" level="project" />
+    <orderEntry type="library" name="CodecWav1" level="project" />
   </component>
 </module>
 
