@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.*;
 
+import core.Config;
+import core.KeyBinder;
 import core.Main;
 
 import java.awt.GridLayout;
@@ -41,6 +43,10 @@ public class SampleGridWindow extends JFrame{
 		SampleGridWindow window = new SampleGridWindow();
 		window.setVisible(true);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Config.keyBinds.put(new Character('y'), window.grid.grid[0][0]);
+        window.setFocusable(true);
+        window.addKeyListener(new KeyBinder());
+        Config.mainWindow = window;
 		System.out.println("done");
 	}
 }

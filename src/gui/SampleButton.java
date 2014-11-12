@@ -17,7 +17,8 @@ public class SampleButton extends Button {
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				if(Config.editMode){
-					changeSound();
+                    //changeSound();
+					loadSound();
 				}
 				else{
 					press();
@@ -30,7 +31,8 @@ public class SampleButton extends Button {
 	/**
 	 * Changes the played sound to the desired sound.
 	 */
-	public void changeSound(/*The sound class*/){
-		((SampleAction)this.pressAction).changeSound();
-	}
+//	public void changeSound(/*The sound class*/){
+//		((SampleAction)this.pressAction).changeSound();
+//	}
+    public void loadSound() {((SampleAction) this.pressAction).loadSound();}
 }
