@@ -7,13 +7,13 @@ import javax.swing.JPanel;
 public class ButtonGrid extends JPanel{
 	Button[][] grid;
 	
-	public ButtonGrid(int xSize,int ySize){
+	public ButtonGrid(int xSize,int ySize, int buttonWidth, int buttonHeight){
 		this.setLayout(new GridLayout(xSize,ySize));
 		grid = new Button[xSize][ySize];
 		
-		for(int i = 0; i < xSize; i++){
-			for(int j = 0; j < ySize; j++){
-				grid[i][j] = new SampleButton(100,100);
+		for(int i = 0; i < ySize; i++){
+			for(int j = 0; j < xSize; j++){
+				grid[i][j] = new SampleButton(buttonWidth,buttonHeight);
 				this.add(grid[i][j]);
 			}
 		}

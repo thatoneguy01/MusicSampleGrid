@@ -44,9 +44,15 @@ public class SampleAction implements Action{
     public void loadSound()
     {
         File clip = FileAccess.choseFile();
+        if (clip == null)
+            return;
         this.clip = AudioPlaybackSystem.createJSClip(clip);
         Config.mainWindow.requestFocusInWindow();
         //assert clip != null;
     }
-	
+
+    public Clip getClip()
+    {
+        return clip;
+    }
 }

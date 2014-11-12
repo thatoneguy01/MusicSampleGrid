@@ -1,5 +1,6 @@
 package core;
 
+import gui.LoopBuilderWindow;
 import gui.SampleGridWindow;
 import paulscode.sound.Library;
 import paulscode.sound.SoundSystem;
@@ -9,6 +10,7 @@ import paulscode.sound.codecs.CodecWav;
 import paulscode.sound.libraries.LibraryJavaSound;
 import paulscode.sound.libraries.LibraryLWJGLOpenAL;
 
+import javax.swing.*;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
@@ -30,8 +32,20 @@ public class Main
         //AudioPlaybackSystem.loadClip("20CenFox.mid", testClip);
         //AudioPlaybackSystem.playClip("20CenFox.mid");
         //FileAccess.createClip();
-        KeyBinder binds = new KeyBinder();
-        SampleGridWindow.main(null);
+        //KeyBinder binds = new KeyBinder();
+        //SampleGridWindow.main(null);
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+        LoopBuilderWindow loopBuilderWindow = new LoopBuilderWindow();
         //System.exit(0);
     }
 

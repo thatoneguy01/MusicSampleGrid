@@ -28,7 +28,7 @@ public class SampleGridWindow extends JFrame{
 	public SampleGridWindow(){
 		setLayout(new GridLayout(0,2));
 		
-		grid = new ButtonGrid(4,4);
+		grid = new ButtonGrid(4,4,100,100);
 		leftPanel = new LeftPanel();
 		
 		this.add(leftPanel);

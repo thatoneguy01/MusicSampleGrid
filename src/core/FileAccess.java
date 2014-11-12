@@ -18,7 +18,13 @@ import java.nio.file.StandardCopyOption;
 public class FileAccess {
 
     public static File choseFile() {
-        JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = null;
+        LookAndFeel previousLF = UIManager.getLookAndFeel();
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            fileChooser = new JFileChooser();
+            UIManager.setLookAndFeel(previousLF);
+        } catch (IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e) {}
         int returnVal = fileChooser.showOpenDialog(new JFrame());
         File file = null;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
