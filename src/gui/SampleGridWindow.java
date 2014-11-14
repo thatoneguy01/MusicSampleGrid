@@ -19,8 +19,13 @@ import java.awt.event.*;
  */
 public class SampleGridWindow extends JFrame{
 	
-	public ButtonGrid grid;
-	public LeftPanel leftPanel;
+	public ButtonGrid buttonGrid;
+	public JPanel leftPanel;
+	public JPanel modePanel;
+	public JPanel loopPanel;
+	
+	public Button[][] grid;
+	public Button[] loopButtons;
 	
 	/**
 	 * Creates the Window and grid.
@@ -28,22 +33,56 @@ public class SampleGridWindow extends JFrame{
 	public SampleGridWindow(){
 		setLayout(new GridLayout(0,2));
 		
-		grid = new ButtonGrid(4,4,100,100);
-		leftPanel = new LeftPanel();
+		//Set up the basic window.
+		buttonGrid = new ButtonGrid(4,4,100,100);
+		this.grid = buttonGrid.grid;
+		leftPanel = setupLeftPanel();
+		leftPanel.setLayout(new GridLayout(2,0));
 		
 		this.add(leftPanel);
-		this.add(grid);
+		this.add(buttonGrid);
 		
 		this.pack();
 		
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Sets-up and returns the left panel, with both the mode
+	 * button and the loop buttons
+	 * @return the leftPanel as a JPanel
+	 */
+	JPanel setupLeftPanel(){
+		JPanel p = new JPanel();
+		JPanel modePanel = new JPanel();
+		JPanel loopPanel = new JPanel();
+		
+		//Setup the modePanel
+		ModeButton editToggle = new ModeButton(100,50);
+		modePanel.add(editToggle);
+		modePanel.setVisible(true);
+		
+		//Setup the loopPanel
+		int n = 4;
+		loopPanel.setLayout(new GridLayout(n,0));
+		loopButtons = new Button[n];
+		for(int i = 0; i < n; i++){
+			loopButtons[i] = new LoopButton();
+			loopPanel.add(loopButtons[i]);
+		}
+		loopPanel.setVisible(true);
+		
+		p.add(modePanel);
+		p.add(loopPanel);
+		p.setVisible(true);
+		return p;
+	}
+	
 	public static void main(String[] args){
 		SampleGridWindow window = new SampleGridWindow();
 		window.setVisible(true);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Config.keyBinds.put(new Character('y'), window.grid.grid[0][0]);
+        Config.keyBinds.put(new Character('y'), window.grid[0][0]);
         window.setFocusable(true);
         window.addKeyListener(new KeyBinder());
         Config.mainWindow = window;

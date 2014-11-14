@@ -10,7 +10,7 @@ public class SoundSelectorGrid {
     private Button[][] grid;
     public LoopBuilderWindow loopBuilder;
 
-    public SoundSelectorGrid(ButtonGrid source)
+    public SoundSelectorGrid(SampleGridWindow source)
     {
         this.grid = source.grid;
         for (int i = 0; i < grid.length; i++)
