@@ -8,7 +8,10 @@ public class ButtonGrid extends JPanel{
 	public Button[][] grid;
 	
 	public ButtonGrid(int xSize,int ySize, int buttonWidth, int buttonHeight){
-		this.setLayout(new GridLayout(xSize,ySize));
+		GridLayout gl = new GridLayout(xSize,ySize);
+		gl.setHgap(2);
+		gl.setVgap(2);
+		this.setLayout(gl);
 		grid = new Button[xSize][ySize];
 		
 		for(int i = 0; i < ySize; i++){

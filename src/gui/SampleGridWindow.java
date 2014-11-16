@@ -9,6 +9,7 @@ import core.Config;
 import core.KeyBinder;
 import core.Main;
 
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.*;
 
@@ -31,7 +32,10 @@ public class SampleGridWindow extends JFrame{
 	 * Creates the Window and grid.
 	 */
 	public SampleGridWindow(){
-		setLayout(new GridLayout(0,2));
+		FlowLayout fl = new FlowLayout();
+		fl.setHgap(10);
+		fl.setVgap(10);
+		setLayout(fl);
 		
 		//Set up the basic window.
 		buttonGrid = new ButtonGrid(4,4,100,100);
@@ -40,6 +44,7 @@ public class SampleGridWindow extends JFrame{
 		leftPanel.setLayout(new GridLayout(2,0));
 		
 		this.add(leftPanel);
+		this.add(Box.createHorizontalStrut(10));
 		this.add(buttonGrid);
 		
 		this.pack();
@@ -64,7 +69,10 @@ public class SampleGridWindow extends JFrame{
 		
 		//Setup the loopPanel
 		int n = 4;
-		loopPanel.setLayout(new GridLayout(n,0));
+		GridLayout gl = new GridLayout(n,0);
+		gl.setHgap(2);
+		gl.setVgap(2);
+		loopPanel.setLayout(gl);
 		loopButtons = new Button[n];
 		for(int i = 0; i < n; i++){
 			loopButtons[i] = new LoopButton();
