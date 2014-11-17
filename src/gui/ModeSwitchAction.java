@@ -9,7 +9,5 @@ public class ModeSwitchAction implements Action {
 	@Override
 	public void execute() {
 		Config.editMode = !Config.editMode;
-		//nextMode = !nextMode;
 	}
-
 }

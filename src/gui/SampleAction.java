@@ -11,7 +11,7 @@ import core.Main;
 
 import javax.sound.sampled.Clip;
 
-public class SampleAction implements Action{
+public class SampleAction implements Action, Saveable{
 
 	//Has a sound
 	File soundFile;
@@ -55,4 +55,16 @@ public class SampleAction implements Action{
     {
         return clip;
     }
+
+	@Override
+	public String saveString() {
+		String s = "SampleAction: ";
+		if(soundFile != null){
+			s += soundFile.getAbsolutePath() + "\n";
+		}
+		else{
+			s += "no file\n";
+		}
+		return s;
+	}
 }
