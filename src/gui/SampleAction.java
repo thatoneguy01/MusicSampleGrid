@@ -69,7 +69,7 @@ public class SampleAction implements Action, Saveable{
 	}
 
 	@Override
-	public Saveable fromString() {
+	public Saveable fromString(String s) {
 		// TODO Auto-generated method stub
 		return null;
 	}

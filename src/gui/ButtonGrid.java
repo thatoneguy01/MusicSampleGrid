@@ -34,4 +34,10 @@ public class ButtonGrid extends JPanel implements Saveable{
 		}
 		return null;
 	}
+
+	@Override
+	public Saveable fromString(String s) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
