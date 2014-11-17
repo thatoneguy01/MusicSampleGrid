@@ -27,13 +27,6 @@ public class Main
 
     public static void main(String[] args)
     {
-        //soundSystem = setupSoundSystem();
-        //File testClip = new File("F:\\Documents\\Workspace\\MusicSampleGrid\\ext\\20CenFox.mid");
-        //AudioPlaybackSystem.loadClip("20CenFox.mid", testClip);
-        //AudioPlaybackSystem.playClip("20CenFox.mid");
-        //FileAccess.createClip();
-        //KeyBinder binds = new KeyBinder();
-        //SampleGridWindow.main(null);
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (ClassNotFoundException e) {
@@ -45,7 +38,14 @@ public class Main
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        LoopBuilderWindow loopBuilderWindow = new LoopBuilderWindow();
+        //soundSystem = setupSoundSystem();
+        //File testClip = new File("F:\\Documents\\Workspace\\MusicSampleGrid\\ext\\20CenFox.mid");
+        //AudioPlaybackSystem.loadClip("20CenFox.mid", testClip);
+        //AudioPlaybackSystem.playClip("20CenFox.mid");
+        //FileAccess.createClip();
+        //KeyBinder binds = new KeyBinder();
+        SampleGridWindow.main(null);
+        //LoopBuilderWindow loopBuilderWindow = new LoopBuilderWindow();
         //System.exit(0);
     }
 

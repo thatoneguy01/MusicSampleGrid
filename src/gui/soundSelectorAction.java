@@ -24,6 +24,6 @@ public class SoundSelectorAction implements Action {
 
     @Override
     public void execute() {
-        container.loopBuilder.build(((SampleAction)button.pressAction).getClip());
+        container.loopBuilder.build(this.clip);
     }
 }

@@ -19,6 +19,7 @@ public class ModeButton extends Button {
 				b.setBackground(Config.editMode?(Color.red):(Color.white));
 			}
 		});
+        this.setBackground(Color.red);
 		this.setVisible(true);
 	}
 

@@ -1,5 +1,6 @@
 package gui;
 
+import core.Config;
 import core.Loop;
 
 /**
@@ -7,17 +8,28 @@ import core.Loop;
  */
 public class SampleLoopAction implements Action {
 
-    private Loop loop = Loop.sampleLoop();
+    private Loop loop = null;//Loop.sampleLoop();
 
     @Override
     public void execute() {
-        if (loop.isLooping())
-        {
-            loop.endLoop();
+        if (Config.editMode) {
+            LoopBuilderWindow loopBuilderWindow = new LoopBuilderWindow(this);
         }
-        else
-        {
-            new Thread(loop).start();
+        else {
+            if (loop.isLooping())
+            {
+                loop.endLoop();
+            }
+            else
+            {
+                new Thread(loop).start();
+            }
         }
+    }
+
+    public void setLoop(Loop l)
+    {
+        if (l != null)
+            this.loop = l;
     }
 }
