@@ -67,4 +67,10 @@ public class SampleAction implements Action, Saveable{
 		}
 		return s;
 	}
+
+	@Override
+	public Saveable fromString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
