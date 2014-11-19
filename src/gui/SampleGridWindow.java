@@ -16,7 +16,6 @@ import java.awt.event.*;
 /**
  * The main window for the project, which has a button grid on the right and options on the left.
  * @author Henry
- *
  */
 public class SampleGridWindow extends JFrame{
 	

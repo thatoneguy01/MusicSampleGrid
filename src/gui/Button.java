@@ -3,6 +3,11 @@ import java.awt.*;
 
 import javax.swing.*;
 
+/**
+ * A simple button which has an action, and when it is pressed, it will execute the pressAction.
+ * @author Henry
+ *
+ */
 public class Button extends JButton{
 	
 	protected Action pressAction;
