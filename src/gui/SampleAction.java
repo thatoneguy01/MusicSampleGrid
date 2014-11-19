@@ -11,6 +11,10 @@ import core.Main;
 
 import javax.sound.sampled.Clip;
 
+/**
+ * An action to play a sound sample.
+ * @author Henry
+ */
 public class SampleAction implements Action, Saveable{
 
 	//Has a sound
@@ -24,36 +28,44 @@ public class SampleAction implements Action, Saveable{
 	
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
 		//Play the sound
 		//AudioPlaybackSystem.playClip(soundAlias);
         if (this.clip != null)
             AudioPlaybackSystem.playJSClip(this.clip);
         System.out.println("~~~SOUND~~~");
+        System.out.println(saveString());
 
 	}
 
-//	public void changeSound() {
-//		File clip = FileAccess.choseFile();
-//        String clipPath = clip.getAbsolutePath();
-//        this.soundAlias = clip.getName();
-//        AudioPlaybackSystem.loadClip(soundAlias, clip);
-//        System.out.println(clipPath + " " + soundAlias);
-//	}
-
+	/**
+	 * Open a file chooser for the user to setup the action
+	 */
     public void loadSound()
     {
         File clip = FileAccess.choseFile();
+        soundFile = clip;
         if (clip == null)
             return;
-        this.clip = AudioPlaybackSystem.createJSClip(clip);
-        Config.mainWindow.requestFocusInWindow();
-        //assert clip != null;
+        setClip(clip);
     }
 
+    /**
+     * Gets the clip attached the this action.
+     * @return The clip.
+     */
     public Clip getClip()
     {
         return clip;
+    }
+    
+    /**
+     * Sets the clip for this action, loading it into the play back system.
+     * @param f The file to attach to this action.
+     */
+    public void setClip(File f){
+    	if (clip == null)
+            return;
+        this.clip = AudioPlaybackSystem.createJSClip(f);
     }
 
 	@Override
@@ -70,7 +82,17 @@ public class SampleAction implements Action, Saveable{
 
 	@Override
 	public Saveable fromString(String s) {
-		// TODO Auto-generated method stub
-		return null;
+		SampleAction sa = new SampleAction();
+		if(!s.contains("SampleAction: ")){
+			return null;
+		}
+		
+		s = s.replace("SampleAction ", "");
+		s = s.replace("\n", "");
+		
+		File f = new File(s);
+		sa.setClip(f);
+		
+		return sa;
 	}
 }

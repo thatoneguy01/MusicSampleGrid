@@ -9,7 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/**
+ * A Button which will play a sound sample when pressed.
+ * @author Henry
+ */
 public class SampleButton extends Button {
+	
+	public SampleButton(){
+		this(100,100);
+	}
 	
 	public SampleButton(int x, int y){
 		super(x, y);

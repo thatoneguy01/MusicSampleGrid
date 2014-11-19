@@ -15,12 +15,15 @@ public class ModeButton extends Button {
 			public void actionPerformed(ActionEvent e){
 				press();
 				Button b = ((Button)e.getSource());
-				b.setText(Config.editMode?("Edit Mode"):("Play Mode"));
-				b.setBackground(Config.editMode?(Color.red):(Color.white));
+				setDisplay();
 			}
 		});
-        this.setBackground(Color.red);
+		setDisplay();
 		this.setVisible(true);
 	}
-
+	
+	private void setDisplay(){
+		this.setText(Config.editMode?("Edit Mode"):("Play Mode"));
+		this.setBackground(Config.editMode?(Color.red):(Color.white));
+	}
 }

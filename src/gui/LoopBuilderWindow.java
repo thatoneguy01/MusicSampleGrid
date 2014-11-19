@@ -19,7 +19,7 @@ public class LoopBuilderWindow extends JFrame
     Loop loop = new Loop();
     BeatButtonArray beats;
 
-    public LoopBuilderWindow(SampleLoopAction toNotify)
+    public LoopBuilderWindow(final SampleLoopAction toNotify)
     {
         this.setLayout(new GridLayout(1, 2, 0, 20));
         JPanel left = new JPanel();
