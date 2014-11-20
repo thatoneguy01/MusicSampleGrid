@@ -1,6 +1,8 @@
 package gui;
 
+import core.AudioPlaybackSystem;
 import core.Config;
+import core.FileAccess;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +30,14 @@ public class ButtonEditMenu extends JPopupMenu {
                 button.loadSound();
             }
         });
+        JMenuItem rec = new JMenuItem("Record Sound");
+        rec.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                FileAccess.createClip();
+            }
+        });
         JMenuItem color = new JMenuItem("Choose Press Color");
         color.addActionListener(new ActionListener() {
             @Override
@@ -44,6 +54,7 @@ public class ButtonEditMenu extends JPopupMenu {
             }
         });
         this.add(source);
+        this.add(rec);
         this.add(color);
         this.add(volume);
         Config.mainWindow.addMouseListener(new MouseAdapter() {

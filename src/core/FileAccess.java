@@ -1,5 +1,6 @@
 package core;
 
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.JTextComponent;
@@ -104,7 +105,7 @@ public class FileAccess {
 
     public static void createClip()
     {
-        File file = new File("F:\\Documents\\temp.wav");
+        File file = new File("temp.wav");
         try {
             file.createNewFile();
         } catch (IOException e) {
@@ -113,9 +114,15 @@ public class FileAccess {
         record(file);
     }
 
-    public static void saveClip(File input)
+    public static File saveClip(File input)
     {
-        final JFileChooser fc = new JFileChooser();
+        JFileChooser fc = null;
+        LookAndFeel previousLF = UIManager.getLookAndFeel();
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            fc = new JFileChooser();
+            UIManager.setLookAndFeel(previousLF);
+        } catch (IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e) {}
         FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV Files", "wav");
         fc.addChoosableFileFilter(filter);
         fc.removeChoosableFileFilter(fc.getAcceptAllFileFilter());
@@ -123,16 +130,16 @@ public class FileAccess {
         while (result == JFileChooser.CANCEL_OPTION)
         {
             Object[] options = {"Save", "Discard"};
-            int responce = JOptionPane.showOptionDialog(new JFrame(), "Your clip will not be saved.  are you sure you want to discard the recording?",
+            int response = JOptionPane.showOptionDialog(new JFrame(), "Your clip will not be saved.  are you sure you want to discard the recording?",
                     "Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-            if (responce == JOptionPane.YES_OPTION)
+            if (response == JOptionPane.YES_OPTION)
             {
                 result = fc.showSaveDialog(new JFrame());
             }
             else
             {
                 input.delete();
-                return;
+                return null;
             }
         }
         if (result == JFileChooser.APPROVE_OPTION);
@@ -147,7 +154,9 @@ public class FileAccess {
                 e.printStackTrace();
             }
             input.delete();
+            return clipFile;
         }
     }
+
 
 }
