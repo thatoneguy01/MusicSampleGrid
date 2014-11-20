@@ -11,18 +11,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
-/**
- * A Button which will play a sound sample when pressed.
- * @author Henry
- */
 public class SampleButton extends Button {
 
     Color pressColor = Color.yellow;
     public ButtonEditMenu edit = null;
-	
-	public SampleButton(){
-		this(100,100);
-	}
 	
 	public SampleButton(int x, int y){
 		super(x, y);
