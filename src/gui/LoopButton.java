@@ -1,5 +1,7 @@
 package gui;
 
+import core.Config;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,6 +16,7 @@ public class LoopButton extends Button{
 			public void actionPerformed(ActionEvent e){
 				press();
 				System.out.println("pressed");
+                Config.mainWindow.requestFocusInWindow();
 			}
 		});
 		

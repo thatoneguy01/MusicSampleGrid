@@ -16,14 +16,14 @@ public class SampleLoopAction implements Action {
             LoopBuilderWindow loopBuilderWindow = new LoopBuilderWindow(this);
         }
         else {
-            if (loop.isLooping())
-            {
-                loop.endLoop();
+            if (loop != null) {
+                if (loop.isLooping()) {
+                    loop.endLoop();
+                } else {
+                    new Thread(loop).start();
+                }
             }
-            else
-            {
-                new Thread(loop).start();
-            }
+            Config.mainWindow.requestFocusInWindow();
         }
     }
 

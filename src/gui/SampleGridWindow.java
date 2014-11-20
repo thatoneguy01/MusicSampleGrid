@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import core.Config;
 import core.KeyBinder;
@@ -64,6 +66,16 @@ public class SampleGridWindow extends JFrame{
 		//Setup the modePanel
 		ModeButton editToggle = new ModeButton(100,50);
 		modePanel.add(editToggle);
+        SpinnerModel tempo = new SpinnerNumberModel(138, 30, 480, 1);
+        JSpinner tempoDisplay = new JSpinner(tempo);
+        tempoDisplay.setSize(100, 50);
+        tempoDisplay.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                Config.tempo = ((SpinnerNumberModel)tempoDisplay.getModel()).getNumber().intValue();
+            }
+        });
+        modePanel.add(tempoDisplay);
 		modePanel.setVisible(true);
 		
 		//Setup the loopPanel
@@ -87,12 +99,15 @@ public class SampleGridWindow extends JFrame{
 	
 	public static void main(String[] args){
 		SampleGridWindow window = new SampleGridWindow();
+        window.setJMenuBar(new TopMenuBar());
+        window.setSize(window.getWidth(), window.getHeight() + 30);
 		window.setVisible(true);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Config.keyBinds.put(new Character('y'), window.grid[0][0]);
         window.setFocusable(true);
+        window.requestFocusInWindow();
         window.addKeyListener(new KeyBinder());
         Config.mainWindow = window;
+        Config.buildKeyBinds();
 		System.out.println("done");
 	}
 }

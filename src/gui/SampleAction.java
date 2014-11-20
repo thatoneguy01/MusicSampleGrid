@@ -21,6 +21,7 @@ public class SampleAction implements Action, Saveable{
 	File soundFile;
 	String soundAlias;
     Clip clip;
+    int volume = 5;
 	
 	public SampleAction(){
 
@@ -30,8 +31,9 @@ public class SampleAction implements Action, Saveable{
 	public void execute() {
 		//Play the sound
 		//AudioPlaybackSystem.playClip(soundAlias);
-        if (this.clip != null)
+        if (this.clip != null) {
             AudioPlaybackSystem.playJSClip(this.clip);
+        }
         System.out.println("~~~SOUND~~~");
         System.out.println(saveString());
 
