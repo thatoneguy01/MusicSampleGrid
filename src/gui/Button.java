@@ -27,6 +27,9 @@ public class Button extends JButton{
 	public void press(){
 		pressAction.execute();
 	}
+    public Action getPressAction() {
+        return pressAction;
+    }
 	
 	/**
 	 * Overriden so it will be my specified size.

@@ -26,7 +26,11 @@ public class SampleAction implements Action, Saveable{
 	public SampleAction(){
 
 	}
-	
+
+    public File getSoundFile() {
+        return soundFile;
+    }
+
 	@Override
 	public void execute() {
 		//Play the sound

@@ -1,6 +1,9 @@
 package gui;
 
+import core.AudioPlaybackSystem;
+
 import javax.sound.sampled.Clip;
+import java.io.File;
 
 /**
  * Created by Daniel on 11/12/14.
@@ -8,6 +11,7 @@ import javax.sound.sampled.Clip;
 public class SoundSelectorAction implements Action {
 
     private SoundSelectorGrid container;
+    private File source;
     private Button button;
     public Clip clip;
 
@@ -21,9 +25,10 @@ public class SoundSelectorAction implements Action {
     {
         clip = c;
     }
+    public void setSource(File f) { source = f;}
 
     @Override
     public void execute() {
-        container.loopBuilder.build(this.clip);
+        container.loopBuilder.build(AudioPlaybackSystem.createJSClip(source));
     }
 }

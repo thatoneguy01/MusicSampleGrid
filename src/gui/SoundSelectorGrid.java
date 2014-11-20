@@ -3,6 +3,7 @@ package gui;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * Created by Daniel on 11/12/14.
@@ -22,8 +23,10 @@ public class SoundSelectorGrid extends JPanel{
             for (int j = 0; j < grid[i].length; j++)
             {
                 Clip c = ((SampleAction)source.grid[i][j].pressAction).getClip();
+                File f = ((SampleAction)source.grid[i][j].pressAction).getSoundFile();
                 grid[i][j] = new SelectorButton(40, 40, this);
                 ((SoundSelectorAction)grid[i][j].pressAction).setClip(c);
+                ((SoundSelectorAction)grid[i][j].pressAction).setSource(f);
                 this.add(grid[i][j]);
             }
         }

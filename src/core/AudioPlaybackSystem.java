@@ -1,5 +1,8 @@
 package core;
 
+import gui.Button;
+import gui.SampleAction;
+import gui.SampleButton;
 import paulscode.sound.SoundSystemConfig;
 
 import javax.sound.sampled.*;
@@ -70,4 +73,20 @@ public class AudioPlaybackSystem
 //        Main.soundSystem.rewind(alias);
 //        Main.soundSystem.play(alias);
 //    }
+
+    public static Clip clone(SampleButton source) {
+        try {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(((SampleAction)source.getPressAction()).getSoundFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            return clip;
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
