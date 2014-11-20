@@ -65,7 +65,7 @@ public class SampleAction implements Action, Saveable{
      * @param f The file to attach to this action.
      */
     public void setClip(File f){
-    	if (clip == null)
+    	if (f == null)
             return;
         this.clip = AudioPlaybackSystem.createJSClip(f);
     }

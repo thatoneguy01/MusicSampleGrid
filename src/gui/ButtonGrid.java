@@ -78,7 +78,7 @@ public class ButtonGrid extends JPanel implements Saveable{
 		
 		//Loop through to recreate the buttons
 		for(int i = 0; i < 16; i++){
-			SampleButton b = new SampleButton();
+			SampleButton b = new SampleButton(100, 100);
 			SampleAction sa = new SampleAction();
 			b.pressAction = (Action) sa.fromString(lines[i]);
 			bg.grid[i/4][i%4] = b;

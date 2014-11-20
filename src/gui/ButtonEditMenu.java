@@ -33,7 +33,7 @@ public class ButtonEditMenu extends JPopupMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                caller.pressColor = JColorChooser.showDialog(new JPanel(), "Choose press color", button.pressColor);
+                caller.pressedColor = JColorChooser.showDialog(new JPanel(), "Choose press color", button.pressedColor);
             }
         });
         JMenuItem volume = new JMenuItem("Volume");

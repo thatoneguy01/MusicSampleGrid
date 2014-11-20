@@ -4,6 +4,7 @@ import core.AudioPlaybackSystem;
 import core.Config;
 import core.FileAccess;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,6 @@ import java.io.File;
 
 public class SampleButton extends Button {
 
-    Color pressColor = Color.yellow;
     public ButtonEditMenu edit = null;
 	
 	public SampleButton(int x, int y){
@@ -38,6 +38,19 @@ public class SampleButton extends Button {
                 Config.mainWindow.requestFocusInWindow();
 			}
 		});
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                UIManager.put("Button.select", pressedColor);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                UIManager.put("Button.select", Config.selectColor);
+            }
+        });
 	}
 	
 	/**
@@ -47,19 +60,13 @@ public class SampleButton extends Button {
 //		((SampleAction)this.pressAction).changeSound();
 //	}
     public void loadSound() {((SampleAction) this.pressAction).loadSound();}
-    public void setPressColor() {this.pressColor = edit.caller.pressColor;}
+    public void setPressColor() {this.pressedColor = edit.caller.pressedColor;}
 
     @Override
     public void press() {
-        super.press();
         if (((SampleAction)pressAction).clip == null)
             return;
-        setBackground(pressColor);
-        try {
-            Thread.sleep(((SampleAction)pressAction).clip.getMicrosecondLength()/1005);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        setBackground(Color.white);
+
+        super.press();
     }
 }

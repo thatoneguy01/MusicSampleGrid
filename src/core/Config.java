@@ -3,6 +3,8 @@ package core;
 import gui.Button;
 import gui.SampleGridWindow;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +17,7 @@ public class Config {
     public static boolean editMode = true;
     public static Map<Character, Button> keyBinds = new HashMap<Character, Button>();
     public static SampleGridWindow mainWindow = null;
+    public static Color selectColor = Color.lightGray;
 
     public static void buildKeyBinds()
     {

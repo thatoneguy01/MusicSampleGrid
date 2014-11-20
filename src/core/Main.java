@@ -38,6 +38,7 @@ public class Main
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+        Config.selectColor = UIManager.getColor("Button.select");
         //soundSystem = setupSoundSystem();
         //File testClip = new File("F:\\Documents\\Workspace\\MusicSampleGrid\\ext\\20CenFox.mid");
         //AudioPlaybackSystem.loadClip("20CenFox.mid", testClip);
