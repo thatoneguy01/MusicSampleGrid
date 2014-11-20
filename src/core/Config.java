@@ -5,6 +5,7 @@ import gui.SampleGridWindow;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ public class Config {
     public static Map<Character, Button> keyBinds = new HashMap<Character, Button>();
     public static SampleGridWindow mainWindow = null;
     public static Color selectColor = Color.lightGray;
+    public static File currentSave;
 
     public static void buildKeyBinds()
     {
@@ -37,6 +39,16 @@ public class Config {
         keyBinds.put(new Character('m'), mainWindow.grid[3][1]);
         keyBinds.put(new Character(','), mainWindow.grid[3][2]);
         keyBinds.put(new Character('.'), mainWindow.grid[3][3]);
+    }
+
+    public static void save()
+    {
+
+    }
+
+    public static void load()
+    {
+
     }
 
 }
