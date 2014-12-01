@@ -6,11 +6,17 @@ import java.awt.event.ActionListener;
 
 import core.Config;
 
+/**
+ * Button to change between edit and play modes.
+ * @author Henry
+ */
 public class ModeButton extends Button {
 
 	public ModeButton(int xSize, int ySize) {
 		super(xSize, ySize);
 		this.pressAction = new ModeSwitchAction();
+		
+		//Add an action listener to change color and text.
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				press();

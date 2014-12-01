@@ -12,6 +12,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+/**
+ * A button which will play a sound sample.
+ * @author Henry
+ *
+ */
 public class SampleButton extends Button {
 
     public ButtonEditMenu edit = null;
