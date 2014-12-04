@@ -67,7 +67,7 @@ public class SampleGridWindow extends JFrame{
 		ModeButton editToggle = new ModeButton(100,50);
 		modePanel.add(editToggle);
         SpinnerModel tempo = new SpinnerNumberModel(138, 30, 480, 1);
-        JSpinner tempoDisplay = new JSpinner(tempo);
+        final JSpinner tempoDisplay = new JSpinner(tempo);
         tempoDisplay.setSize(100, 50);
         tempoDisplay.addChangeListener(new ChangeListener() {
             @Override

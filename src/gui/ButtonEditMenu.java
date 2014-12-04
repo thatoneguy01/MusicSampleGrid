@@ -18,7 +18,7 @@ public class ButtonEditMenu extends JPopupMenu {
 
     SampleButton caller = null;
 
-    public ButtonEditMenu(SampleButton button)
+    public ButtonEditMenu(final SampleButton button)
     {
         caller = button;
 

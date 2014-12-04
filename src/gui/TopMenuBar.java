@@ -1,6 +1,6 @@
 package gui;
 
-import com.sun.xml.internal.xsom.util.ComponentNameFunction;
+//import com.sun.xml.internal.xsom.util.ComponentNameFunction;
 import core.Config;
 
 import javax.swing.*;

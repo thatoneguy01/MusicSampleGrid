@@ -24,7 +24,7 @@ public class SampleButton extends Button {
 	public SampleButton(int x, int y){
 		super(x, y);
 		this.pressAction = new SampleAction();
-        SampleButton b = this;
+        final SampleButton b = this;
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				if(Config.editMode){
