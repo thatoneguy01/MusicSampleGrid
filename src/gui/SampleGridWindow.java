@@ -11,6 +11,9 @@ import core.Config;
 import core.KeyBinder;
 import core.Main;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.*;
@@ -41,8 +44,8 @@ public class SampleGridWindow extends JFrame{
 		//Set up the basic window.
 		buttonGrid = new ButtonGrid(4,4,100,100);
 		this.grid = buttonGrid.grid;
-		leftPanel = setupLeftPanel();
-		leftPanel.setLayout(new GridLayout(2,0));
+		leftPanel = (JPanel) setupLeftPanel();
+		//leftPanel.setLayout(new GridLayout(2,0));
 		
 		this.add(leftPanel);
 		this.add(Box.createHorizontalStrut(10));
@@ -58,16 +61,22 @@ public class SampleGridWindow extends JFrame{
 	 * button and the loop buttons
 	 * @return the leftPanel as a JPanel
 	 */
-	JPanel setupLeftPanel(){
-		JPanel p = new JPanel();
+	Container setupLeftPanel(){
+		Container p = new JPanel();
+		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));
+		
 		JPanel modePanel = new JPanel();
 		JPanel loopPanel = new JPanel();
 		
 		//Setup the modePanel
 		ModeButton editToggle = new ModeButton(100,50);
+		modePanel.add(new JLabel("Mode"));
 		modePanel.add(editToggle);
+		modePanel.setVisible(true);
+		
         SpinnerModel tempo = new SpinnerNumberModel(138, 30, 480, 1);
         final JSpinner tempoDisplay = new JSpinner(tempo);
+        JPanel tempoPanel = new JPanel();
         tempoDisplay.setSize(100, 50);
         tempoDisplay.addChangeListener(new ChangeListener() {
             @Override
@@ -75,25 +84,31 @@ public class SampleGridWindow extends JFrame{
                 Config.tempo = ((SpinnerNumberModel)tempoDisplay.getModel()).getNumber().intValue();
             }
         });
-        modePanel.add(tempoDisplay);
-		modePanel.setVisible(true);
+        tempoPanel.setAlignmentY(CENTER_ALIGNMENT);
+        tempoPanel.add(new JLabel("Tempo"));
+		tempoPanel.add(tempoDisplay);
+		tempoPanel.setVisible(true);
 		
 		//Setup the loopPanel
 		int n = 4;
-		GridLayout gl = new GridLayout(n,0);
+		GridLayout gl = new GridLayout(n+1,0);
 		gl.setHgap(2);
 		gl.setVgap(2);
 		loopPanel.setLayout(gl);
 		loopButtons = new Button[n];
+		loopPanel.add(new JLabel("Loops"));
 		for(int i = 0; i < n; i++){
 			loopButtons[i] = new LoopButton();
 			loopPanel.add(loopButtons[i]);
 		}
 		loopPanel.setVisible(true);
+        loopPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		p.add(modePanel);
+		p.add(tempoPanel);
 		p.add(loopPanel);
 		p.setVisible(true);
+		pack();
 		return p;
 	}
 	
