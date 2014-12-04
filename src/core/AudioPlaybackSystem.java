@@ -89,4 +89,24 @@ public class AudioPlaybackSystem
         }
         return null;
     }
+
+    public static void setVolume(Clip clip, float percent)
+    {
+        FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        float volMax = volume.getMaximum();
+        float volMin = volume.getMinimum();
+        float volVal = ((volMax - volMin) * percent) + volMin;
+        volume.setValue(volVal);
+    }
+
+    public static float getVolPercent(Clip clip)
+    {
+        FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        float volLevel = volume.getValue();
+        float volMax = volume.getMaximum();
+        float volMin = volume.getMinimum();
+        float percent = (volLevel - volMin)/(volMax - volMin);
+        return percent;
+    }
+
 }
