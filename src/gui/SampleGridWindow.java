@@ -130,15 +130,13 @@ public class SampleGridWindow extends JFrame implements Saveable{
 	}
 
 	@Override
-	public void load(String s) {
-		// TODO Auto-generated method stub
-		
+	public void load(Element node) {
+		buttonGrid.load(node);
 	}
 
 	@Override
 	public void save(Document doc, Element parentElement) {
 		buttonGrid.save(doc, parentElement);
-		//loopPanel.save(doc, parentElement);
 	}
 
 }

@@ -7,12 +7,15 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 /**
  * A simple button which has an action, and when it is pressed, it will execute the pressAction.
  * @author Henry
  *
  */
-public class Button extends JButton{
+public class Button extends JButton {
 	
 	protected Action pressAction;
 	protected int x,y;

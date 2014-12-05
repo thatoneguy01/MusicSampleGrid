@@ -65,7 +65,7 @@ public class SampleButton extends Button {
 //		((SampleAction)this.pressAction).changeSound();
 //	}
     public void loadSound() {((SampleAction) this.pressAction).loadSound();}
-    public void setPressColor() {this.pressedColor = edit.caller.pressedColor;}
+    public void setPressColor() {if(edit != null)this.pressedColor = edit.caller.pressedColor;}
 
     @Override
     public void press() {

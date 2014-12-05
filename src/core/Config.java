@@ -82,7 +82,22 @@ public class Config {
 
     public static void load()
     {
-
+    	DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+    	DocumentBuilder builder = null;
+    	Document doc = null;
+    	try{
+    		builder = builderFactory.newDocumentBuilder();
+			doc = builder.parse(new File("save.xml"));
+			
+			Element root = (Element) doc.getFirstChild();
+			
+			mainWindow.load(root);
+			
+			System.out.println("File loaded!");
+    	}
+    	catch (Exception e){
+    		e.printStackTrace();
+    	}
     }
 
 }

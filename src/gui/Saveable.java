@@ -11,7 +11,7 @@ import org.w3c.dom.Element;
  */
 public interface Saveable {
 	
-	public void load(String s);
+	public void load(Element node);
 
 	public void save(Document doc, Element parentElement);
 

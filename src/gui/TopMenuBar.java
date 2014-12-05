@@ -37,7 +37,7 @@ public class TopMenuBar extends JMenuBar {
         open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+            	Config.load();
             }
         });
         JMenuItem exit = new JMenuItem("Exit", KeyEvent.VK_E);

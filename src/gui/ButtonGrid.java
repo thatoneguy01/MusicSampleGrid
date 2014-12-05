@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  * A 2d array of buttons which can be saved and embedded in other JPanels.
@@ -61,9 +62,15 @@ public class ButtonGrid extends JPanel implements Saveable{
 	}
 
 	@Override
-	public void load(String s) {
-		// TODO Auto-generated method stub
-		
+	public void load(Element node) {
+		NodeList list = node.getElementsByTagName("SampleAction");
+		System.out.println(list.getLength());
+		for(int i = 0; i < list.getLength(); i++){
+			int x = i / 4;
+			int y = i % 4;
+			System.out.println(x + " " + y);
+			((SampleAction)(grid[x][y].pressAction)).load((Element)list.item(i));
+		}
 	}
 	
 

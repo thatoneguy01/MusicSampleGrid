@@ -81,16 +81,39 @@ public class SampleAction implements Action, Saveable{
 
 	@Override
 	public void save(Document doc, Element parentElement) {
-		Element child = doc.createElement("SampleAction");
-		if(soundFile != null){
-			child.setAttribute("file", soundFile.getAbsolutePath());
-			child.setAttribute("volume", volume+"");
+		try{
+			Element child = doc.createElement("SampleAction");
+			if(soundFile != null){
+				child.setAttribute("file", soundFile.getCanonicalPath());
+				child.setAttribute("volume", volume+"");
+			}
+			parentElement.appendChild(child);
 		}
-		parentElement.appendChild(child);
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public void load(String s) {
+	public void load(Element node) {
+		
+		String filePath = "";
+		
+		if(node.hasAttribute("volume")){
+			filePath = node.getAttribute("file");
+			File f = new File(filePath);
+			soundFile = f; 
+			setClip(f);
+		}
+			
+		int v = 5;
+		
+		if(node.hasAttribute("volume")){
+			v = Integer.parseInt(node.getAttribute("volume"));
+			volume = v;	
+		}
+		
+		System.out.println("Sample Action: " + filePath + " " + v);
 		
 	}
 }
