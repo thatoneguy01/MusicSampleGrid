@@ -10,6 +10,11 @@ import core.FileAccess;
 import core.Main;
 
 import javax.sound.sampled.Clip;
+import javax.xml.parsers.DocumentBuilder;
+
+import org.w3c.dom.*;
+
+//import com.sun.xml.internal.txw2.Document;
 
 /**
  * An action to play a sound sample.
@@ -39,7 +44,7 @@ public class SampleAction implements Action, Saveable{
             AudioPlaybackSystem.playJSClip(this.clip);
         }
         System.out.println("~~~SOUND~~~");
-        System.out.println(saveString());
+       // System.out.println(saveString());
 
 	}
 
@@ -75,30 +80,17 @@ public class SampleAction implements Action, Saveable{
     }
 
 	@Override
-	public String saveString() {
-		String s = "SampleAction: ";
+	public void save(Document doc, Element parentElement) {
+		Element child = doc.createElement("SampleAction");
 		if(soundFile != null){
-			s += soundFile.getAbsolutePath() + "\n";
+			child.setAttribute("file", soundFile.getAbsolutePath());
+			child.setAttribute("volume", volume+"");
 		}
-		else{
-			s += "no file\n";
-		}
-		return s;
+		parentElement.appendChild(child);
 	}
 
 	@Override
-	public Saveable fromString(String s) {
-		SampleAction sa = new SampleAction();
-		if(!s.contains("SampleAction: ")){
-			return null;
-		}
+	public void load(String s) {
 		
-		s = s.replace("SampleAction ", "");
-		s = s.replace("\n", "");
-		
-		File f = new File(s);
-		sa.setClip(f);
-		
-		return sa;
 	}
 }

@@ -4,8 +4,21 @@ import gui.Button;
 import gui.SampleGridWindow;
 
 import javax.swing.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import java.awt.*;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,7 +56,28 @@ public class Config {
 
     public static void save()
     {
-
+    	DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+    	DocumentBuilder builder = null;
+    	Document doc = null;
+    	try{
+    		builder = builderFactory.newDocumentBuilder();
+			doc = builder.newDocument();
+			
+			Element root = doc.createElement("save");
+			
+			doc.appendChild(root);
+			
+			mainWindow.save(doc,root);
+	    	TransformerFactory transFact = TransformerFactory.newInstance();
+	    	Transformer transformer = transFact.newTransformer();
+	    	DOMSource source = new DOMSource(doc);
+	    	StreamResult result = new StreamResult(new File("save.xml"));
+	    	transformer.transform(source, result);
+	    	System.out.println("File saved!");
+    	}
+    	catch (Exception e){
+    		e.printStackTrace();
+    	}
     }
 
     public static void load()

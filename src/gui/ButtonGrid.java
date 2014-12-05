@@ -4,6 +4,9 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 /**
  * A 2d array of buttons which can be saved and embedded in other JPanels.
  * @author Henry
@@ -43,46 +46,26 @@ public class ButtonGrid extends JPanel implements Saveable{
 		
 		this.setVisible(true);
 	}
-	
-	//Saveable
 
 	@Override
-	public String saveString() {
-		//Surround with 'Grid'
-		String s = "Grid\n";
-		//Include the save string of each button. seperated by '::'
+	public void save(Document doc, Element parentElement) {
+		Element child = doc.createElement("ButtonGrid");
+		
 		for(int i = 0; i < grid.length; i++){
 			for(int j = 0; j < grid[i].length; j++){
-				s += ((SampleAction) grid[i][j].pressAction).saveString() + "::";
+				((SampleAction)grid[i][j].pressAction).save(doc, child);
 			}
 		}
-		s += "Grid\n";
-		return s;
+		
+		parentElement.appendChild(child);
 	}
 
 	@Override
-	public Saveable fromString(String s) {
-		ButtonGrid bg = new ButtonGrid(4,4);
+	public void load(String s) {
+		// TODO Auto-generated method stub
 		
-		//Remove the Grids on either side
-		if(!s.contains("Grid\n") || !(s.replaceFirst("Grid\n", "")).contains("Grid")){
-			return null;
-		}
-		s = s.replaceAll("Grid\n", "");
-		
-		//Split along those '::' we added
-		String[] lines = s.split("::"); 
-		if(lines.length != 16){
-			return null;
-		}
-		
-		//Loop through to recreate the buttons
-		for(int i = 0; i < 16; i++){
-			SampleButton b = new SampleButton(100, 100);
-			SampleAction sa = new SampleAction();
-			b.pressAction = (Action) sa.fromString(lines[i]);
-			bg.grid[i/4][i%4] = b;
-		}
-		return bg;
 	}
+	
+
+	
 }

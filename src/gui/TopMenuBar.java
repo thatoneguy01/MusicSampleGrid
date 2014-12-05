@@ -22,7 +22,7 @@ public class TopMenuBar extends JMenuBar {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+            	Config.save();
             }
         });
         JMenuItem saveAs = new JMenuItem("Save As");

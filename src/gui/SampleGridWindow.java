@@ -7,6 +7,9 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import core.Config;
 import core.KeyBinder;
 import core.Main;
@@ -22,7 +25,7 @@ import java.awt.event.*;
  * The main window for the project, which has a button grid on the right and options on the left.
  * @author Henry
  */
-public class SampleGridWindow extends JFrame{
+public class SampleGridWindow extends JFrame implements Saveable{
 	
 	public ButtonGrid buttonGrid;
 	public JPanel leftPanel;
@@ -125,4 +128,17 @@ public class SampleGridWindow extends JFrame{
         Config.buildKeyBinds();
 		System.out.println("done");
 	}
+
+	@Override
+	public void load(String s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void save(Document doc, Element parentElement) {
+		buttonGrid.save(doc, parentElement);
+		//loopPanel.save(doc, parentElement);
+	}
+
 }
