@@ -10,17 +10,20 @@ import java.util.ArrayList;
  */
 public class Loop implements Runnable {
 
-    private Clip[] clips;
+    public Clip[] clips;
+    public String[] files;
     private boolean looping = false;
 
     public Loop()
     {
         clips = new Clip[16];
+        files = new String[16];
     }
 
-    public void addSound(int index, Clip sound)
+    public void addSound(int index, Clip sound, String file)
     {
         clips[index] = sound;
+        files[index] = file;
     }
 
     public void beginLoop()
@@ -63,14 +66,24 @@ public class Loop implements Runnable {
     public static Loop sampleLoop()
     {
         Loop loop = new Loop();
-        Clip kick1 = AudioPlaybackSystem.createJSClip(new File("909_kik2.wav"));
-        Clip kick2 = AudioPlaybackSystem.createJSClip(new File("909_kik2.wav"));
-        Clip kick3 = AudioPlaybackSystem.createJSClip(new File("909_kik2.wav"));
-        Clip kick4 = AudioPlaybackSystem.createJSClip(new File("909_kik2.wav"));
-        loop.addSound(0, kick1);
-        loop.addSound(4, kick2);
-        loop.addSound(8, kick3);
-        loop.addSound(12, kick4);
+        File f = new File("909_kik2.wav");
+        Clip kick1 = AudioPlaybackSystem.createJSClip(f);
+        Clip kick2 = AudioPlaybackSystem.createJSClip(f);
+        Clip kick3 = AudioPlaybackSystem.createJSClip(f);
+        Clip kick4 = AudioPlaybackSystem.createJSClip(f);
+        String path = f.getAbsolutePath();
+        loop.addSound(0, kick1, path);
+        loop.addSound(4, kick2, path);
+        loop.addSound(8, kick3, path);
+        loop.addSound(12, kick4, path);
         return loop;
+    }
+    
+    public Clip[] getClips(){
+    	return clips;
+    }
+    
+    public String[] getFiles(){
+    	return files;
     }
 }

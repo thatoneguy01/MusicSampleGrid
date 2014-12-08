@@ -61,14 +61,14 @@ public class LoopBuilderWindow extends JFrame
         this.setVisible(true);
     }
 
-    public void build(Clip sound)
+    public void build(Clip sound, String file)
     {
         int index = beats.activeIndex;
         if (index == -1)
             return;
         else
         {
-            loop.addSound(index, sound);
+            loop.addSound(index, sound, file);
             beats.buttonAt(beats.activeIndex).baseColor = Color.lightGray;
         }
     }

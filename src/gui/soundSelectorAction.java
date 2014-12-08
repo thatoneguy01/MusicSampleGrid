@@ -29,6 +29,6 @@ public class SoundSelectorAction implements Action {
 
     @Override
     public void execute() {
-        container.loopBuilder.build(AudioPlaybackSystem.createJSClip(source));
+        container.loopBuilder.build(AudioPlaybackSystem.createJSClip(source), source.getAbsolutePath());
     }
 }

@@ -9,6 +9,7 @@ import javax.swing.event.ChangeListener;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import core.Config;
 import core.KeyBinder;
@@ -132,11 +133,23 @@ public class SampleGridWindow extends JFrame implements Saveable{
 	@Override
 	public void load(Element node) {
 		buttonGrid.load(node);
+		
+		NodeList loops = node.getElementsByTagName("Loop");
+		for(int i = 0; i < 4; i++){
+			((SampleLoopAction)(loopButtons[i].pressAction)).load((Element) loops.item(i));
+		}
 	}
 
 	@Override
 	public void save(Document doc, Element parentElement) {
 		buttonGrid.save(doc, parentElement);
+		
+		Element loopNode = doc.createElement("Loops");
+		for (Button loop : loopButtons){
+			SampleLoopAction l = (SampleLoopAction)loop.pressAction;
+			l.save(doc, loopNode);
+		}
+		parentElement.appendChild(loopNode);
 	}
 
 }
